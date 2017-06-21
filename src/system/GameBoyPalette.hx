@@ -1,6 +1,7 @@
 package system;
 
 import luxe.Color;
+import luxe.Log.*;
 
 import definitions.Enums;
 
@@ -42,9 +43,15 @@ class GameBoyPalette
         return type;
     }
 
-    // TODO : static yuck
     public static function get_color(index:Int)
     {
+        if (index > _palette.length - 1)
+        {
+            _debug("Palette index " + index + "out of range. Returning default color.");
+
+            return new Color().rgb(0xff69b4);
+        }
+
         return _palette[index];
     }
 }

@@ -43,19 +43,20 @@ class UIButtonSimple extends Render
         rendering = uiRendering;
         var labelRenderer:mint.render.luxe.Label = cast control.label.renderer;
         _text = labelRenderer.text;
+        var opt = control.options.options;
 
-        def(control.options.options.color_scheme, {});
-        def(control.options.options.color_scheme.background_color, new Color().rgb(BasicColors.Red));
-        def(control.options.options.color_scheme.background_color_hover, new Color().rgb(BasicColors.Red));
-        def(control.options.options.color_scheme.background_color_down, new Color().rgb(BasicColors.Red));
-        def(control.options.options.color_scheme.foreground_color, new Color().rgb(BasicColors.Green));                 
-        def(control.options.options.color_scheme.foreground_color_hover, new Color().rgb(BasicColors.Green));
-        def(control.options.options.color_scheme.foreground_color_down, new Color().rgb(BasicColors.Green));
-        def(control.options.options.color_scheme.text_color, new Color().rgb(BasicColors.Blue));
-        def(control.options.options.color_scheme.text_color_hover, new Color().rgb(BasicColors.Blue));
-        def(control.options.options.color_scheme.text_color_down, new Color().rgb(BasicColors.Blue));                
+        def(opt.color_scheme, {});
+        def(opt.color_scheme.background_color, new Color().rgb(BasicColors.Red));
+        def(opt.color_scheme.background_color_hover, new Color().rgb(BasicColors.Red));
+        def(opt.color_scheme.background_color_down, new Color().rgb(BasicColors.Red));
+        def(opt.color_scheme.foreground_color, new Color().rgb(BasicColors.Green));                 
+        def(opt.color_scheme.foreground_color_hover, new Color().rgb(BasicColors.Green));
+        def(opt.color_scheme.foreground_color_down, new Color().rgb(BasicColors.Green));
+        def(opt.color_scheme.text_color, new Color().rgb(BasicColors.Blue));
+        def(opt.color_scheme.text_color_hover, new Color().rgb(BasicColors.Blue));
+        def(opt.color_scheme.text_color_down, new Color().rgb(BasicColors.Blue));                
 
-        _color_scheme = control.options.options.color_scheme;
+        _color_scheme = opt.color_scheme;
 
         // Init visuals
 
@@ -87,7 +88,7 @@ class UIButtonSimple extends Render
 
         // Set size and appearance
         onbounds();
-        set_normal_colors(); 
+        check_current_mouse_position();
     }
 
     override function onbounds():Void
@@ -146,12 +147,12 @@ class UIButtonSimple extends Render
         _color_scheme = null;
     }
 
-    public function check_current_mouse_position(x:Float, y:Float):Void
+    public function check_current_mouse_position():Void
     {
-        _debug("x:" + x);
-        _debug("y:" + y);     
+        var unscaled_x = Luxe.screen.cursor.pos.x * Main.game_scale_inverse;
+        var unscaled_y = Luxe.screen.cursor.pos.y * Main.game_scale_inverse;
 
-        if (control.contains(x / Main.game_scale, y / Main.game_scale))
+        if (control.contains(unscaled_x, unscaled_y))
         {
             set_hover_colors();
         }
@@ -222,6 +223,11 @@ class UIButtonSimple extends Render
 
     function on_mouse_move(e:MouseEvent, c:Control) 
     {
-        _debug("---------- UIButtonSimple.on_mouse_move ----------");
+        // _debug("---------- UIButtonSimple.on_mouse_move ----------");
     }
+
+    // override function onfocused()
+    // {
+    //     set_hover_colors();
+    // }
 }

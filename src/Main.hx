@@ -32,6 +32,7 @@ class Main extends luxe.Game
     public static var h:Int = -1;
 
     public static var game_scale:Float = 1.0;
+    public static var game_scale_inverse:Float = 1.0;    
 
     private var _state_manager : StateManager;
 
@@ -45,6 +46,7 @@ class Main extends luxe.Game
         h = windowConfig.height;
 
         game_scale = windowConfig.scale;
+        game_scale_inverse = 1 / game_scale;
 
         config.window.width = w * cast game_scale;
         config.window.height = h * cast game_scale;

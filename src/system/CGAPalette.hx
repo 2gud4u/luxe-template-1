@@ -1,6 +1,7 @@
 package system;
 
 import luxe.Color;
+import luxe.Log.*;
 
 import definitions.Enums;
 
@@ -63,6 +64,13 @@ class CGAPalette
 
     public function get_color(index:Int):Color
     {
+        if (index > _palette.length - 1)
+        {
+            _debug("Palette index " + index + "out of range. Returning debug color.");
+
+            return new Color().rgb(0xff69b4);
+        }
+
         return _palette[index];
     }
 }

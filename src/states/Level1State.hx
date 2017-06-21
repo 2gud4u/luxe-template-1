@@ -53,6 +53,7 @@ class Level1State extends BaseState
             options: { color_scheme:colors },
             onclick:function(e,c) { on_button_click(); }
         });
+        button.focus();
 
         // Set up level music
         music = Luxe.resources.audio('assets/sound/POL-chubby-cat-short.wav');
@@ -62,6 +63,8 @@ class Level1State extends BaseState
 
     private function on_button_click()
     {
+        _debug("---------- Level1State.on_button_click ----------");
+
         Luxe.events.fire(EventTypes.ChangeState, { state:StateNames.Level2 });
     }
 
@@ -70,6 +73,8 @@ class Level1State extends BaseState
         _debug("---------- Level1State.onleave ----------");
 
         super.onleave(_data);
+
+        button.destroy();
         
         // Luxe.audio.stop(music_handle);
     }

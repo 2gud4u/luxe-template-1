@@ -25,6 +25,8 @@ class Level2State extends BaseState
 	{
         _debug("---------- Level2State.onenter ----------");
 
+        // Main.focus.
+
         Luxe.renderer.clear_color = GameBoyPalette.get_color(0);
 
         var colors = 
@@ -52,6 +54,8 @@ class Level2State extends BaseState
             options: { color_scheme:colors },
             onclick:function(e,c) { on_button_click(); }
         });
+        button.focus();
+        _debug("screen pos : " + Luxe.screen.cursor.pos);
 
         // Set up level music
         music = Luxe.resources.audio('assets/sound/POL-king-of-coins-short.wav');        
@@ -62,6 +66,8 @@ class Level2State extends BaseState
 
     private function on_button_click()
     {
+        _debug("---------- Level2State.on_button_click ----------");
+
         Luxe.events.fire(EventTypes.ChangeState, { state:StateNames.Level1 });
     }
 
@@ -70,6 +76,8 @@ class Level2State extends BaseState
         _debug("---------- Level2State.onleave ----------");
 
         super.onleave(_data);
+
+        button.destroy();
 
         // Luxe.audio.stop(music_handle);
     }
