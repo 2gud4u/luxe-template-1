@@ -20,7 +20,6 @@ class LoadState extends BaseState
 
     private var progress_bar:Sprite;
     private var progress_border:Visual;
-    private var background:Sprite;
 
     private var width:Float = 0;
     private var height:Float = 0;
@@ -33,7 +32,7 @@ class LoadState extends BaseState
 
         super({ 
             name:StateNames.Load, 
-            transition_in_time:0.2, 
+            transition_in_time:0.2,
             transition_out_time:0.2 
         });
     }
@@ -42,11 +41,8 @@ class LoadState extends BaseState
     {
         _debug("---------- Load.onenter ----------");
 
-        super.onenter(_);       
-
-        // Set background color
-
-        Luxe.renderer.clear_color = GameBoyPalette.get_color(3);
+        super.onenter(_); 
+        _backgroundSprite.color = GameBoyPalette.get_color(3);      
 
         var view_width:Float = Luxe.screen.w;
         var view_height:Float = Luxe.screen.h;
@@ -65,16 +61,6 @@ class LoadState extends BaseState
         var y_pos = Math.floor(view_height * 0.60);
         var half_width = Math.floor(width / 2);
         var half_height = Math.floor(height / 2);
-
-        background = new Sprite({
-            name:"background", 
-            scene:_scene,  
-            size:new Vector(view_width, view_height),
-            centered:false,
-            color:GameBoyPalette.get_color(3),
-            depth:1,
-            visible:true,
-        });
 
         progress_bar = new Sprite({
             name:"bar",  
@@ -109,9 +95,10 @@ class LoadState extends BaseState
     {
         _debug("---------- Load.onleave ----------");
 
+        progress_bar.destroy();
         progress_bar = null;
+        progress_border.destroy();
         progress_border = null;
-        background = null;
 
         super.onleave(_data);
     }

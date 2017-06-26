@@ -15,12 +15,13 @@ import states.SplashState;
 
 class StateManager
 {
-    private var _states :States;
-    private var _current_state :String;
-    private var _next_state :String;
-    private var _current_parcel :Parcel;
-    private var _changeStateEventId :String;
-    private var _fader :Fader;
+    private var _states:States;
+    private var _current_state:String;
+    private var _next_state:String;
+    private var _queued_state:String;
+    private var _current_parcel:Parcel;
+    private var _changeStateEventId:String;
+    private var _fader:Fader;
 
 	public function new() 
 	{
@@ -29,6 +30,7 @@ class StateManager
         _changeStateEventId = "";
         _current_state = "";
         _next_state = "";
+        _queued_state = "";
 
         // Set up fade overlay
 

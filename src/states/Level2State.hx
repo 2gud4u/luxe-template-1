@@ -25,9 +25,8 @@ class Level2State extends BaseState
 	{
         _debug("---------- Level2State.onenter ----------");
 
-        // Main.focus.
-
-        Luxe.renderer.clear_color = GameBoyPalette.get_color(0);
+        super.onenter(_);
+        _backgroundSprite.color = GameBoyPalette.get_color(0);
 
         var colors = 
         {
@@ -60,8 +59,6 @@ class Level2State extends BaseState
         // Set up level music
         music = Luxe.resources.audio('assets/sound/POL-king-of-coins-short.wav');        
         // music_handle = Luxe.audio.loop(music.source);
-               
-        super.onenter(_);		
     }
 
     private function on_button_click()

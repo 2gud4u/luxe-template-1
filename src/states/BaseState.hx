@@ -1,11 +1,15 @@
 package states;
 
+import luxe.Color;
 import luxe.Log.*;
 import luxe.options.StateOptions;
 import luxe.Scene;
+import luxe.Sprite;
 import luxe.States;
+import luxe.Vector;
 
 import definitions.Enums;
+import system.GameBoyPalette;
 
 typedef BaseStateOptions = 
 {
@@ -17,9 +21,10 @@ typedef BaseStateOptions =
 class BaseState extends State 
 {
     public var transition_in_time:Float;
-    public var transition_out_time:Float; 
+    public var transition_out_time:Float;
 
     private var _scene :Scene;
+    private var _backgroundSprite:Sprite;
 
     public function new(_options:BaseStateOptions) 
     {
@@ -42,7 +47,26 @@ class BaseState extends State
 
         _scene = new Scene(this.name);  
 
-        Luxe.events.fire(EventTypes.StateReady, { state :name });
+        var view_width:Float = Luxe.screen.w;
+        var view_height:Float = Luxe.screen.h;
+
+        if (Luxe.camera.size != null) 
+        {
+            view_width = Luxe.camera.size.x;
+            view_height = Luxe.camera.size.y;
+        }
+
+        _backgroundSprite = new Sprite({
+            name:"background", 
+            scene:_scene,  
+            batcher:Main.background_batcher,
+            size:new Vector(view_width, view_height),
+            centered:false,
+            depth:1,
+            visible:true,
+        });
+
+        // Luxe.events.fire(EventTypes.StateReady, { state :name });
     }
 
     override function onleave<T>(_:T) 
@@ -52,6 +76,12 @@ class BaseState extends State
         if (Luxe.core.shutting_down)
         {
             return;
+        }
+
+        if (_backgroundSprite != null)
+        {
+            _backgroundSprite.destroy();
+            _backgroundSprite = null;
         }
 
         _scene.empty();

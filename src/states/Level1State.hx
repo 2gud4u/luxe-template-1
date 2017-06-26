@@ -25,9 +25,8 @@ class Level1State extends BaseState
 	{
         _debug("---------- Level1State.onenter ----------");
 
-        super.onenter(_);		
-
-        Luxe.renderer.clear_color = GameBoyPalette.get_color(0);
+        super.onenter(_);
+        _backgroundSprite.color = GameBoyPalette.get_color(0);              
 
         var colors = 
         {

@@ -41,6 +41,14 @@ class Main extends luxe.Game
         log('Config loaded as ' + Luxe.snow.config.user);
 
         var windowConfig = Luxe.snow.config.user.window;
+        var renderingConfig = Luxe.snow.config.user.rendering;
+
+        // for (n in Reflect.fields(renderingConfig))
+        //     trace("BLAMMO : " + Reflect.field(renderingConfig, n));
+
+        // Init palette
+
+        palette = new GameBoyPalette(renderingConfig.palette);
 
         w = windowConfig.width;
         h = windowConfig.height;
@@ -70,13 +78,9 @@ class Main extends luxe.Game
     {
         _debug("---------- Main.ready ----------");
 
-        // Init palette
-
-        palette = new GameBoyPalette(GameBoyPaletteType.GB2);    
-
         // Set background color
         
-	    Luxe.renderer.clear_color = GameBoyPalette.get_color(3);
+	    Luxe.renderer.clear_color = new Color().rgb(BasicColors.Red);        
 
         log('Main w: ${w}');
         log('Main h: ${h}');

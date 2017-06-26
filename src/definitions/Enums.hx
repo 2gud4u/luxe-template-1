@@ -81,8 +81,10 @@ package definitions;
 // Game Boy palette types
 @:enum abstract GameBoyPaletteType(String) to String
 {
-  var GB1 = "GB1";
-  var GB2 = "GB2";
+    var GB1 = "GB1";
+    var GB2 = "GB2";
+    var GB3 = "GB3";
+    var GB4 = "GB4";    
 }
 
 // Game Boy palette, gray 1
@@ -101,4 +103,13 @@ package definitions;
     var Light = 0xb2b2b2;
 	var Medium = 0x757575;    
 	var Dark = 0x383838;	
+}
+
+// Game Boy palette, green 1
+@:enum abstract GameBoyPalette3(Int) to Int
+{
+    var Off = 0x9BBC0F;
+    var Light = 0x8BAC0F;
+	var Medium = 0x306230;    
+	var Dark = 0x0F380F;	
 }

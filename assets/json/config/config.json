@@ -1,11 +1,22 @@
 {
   "window": {
-    "width":160,
-    "height":144,
-    "title":"Luxe Template",
-    "fullscreen":false,
-    "resizable":false,
-    "borderless":false,
-    "scale":4
+    "width": 160,
+    "height": 144,
+    "title": "Luxe Template",
+    "fullscreen": false,
+    "resizable": false,
+    "borderless": false,
+    "scale": 4
+  },
+  "rendering": {
+    "palette": "GB3",
+    "palettes": {
+      "gb2": {
+        "dark": "0x000000",
+        "medium": "0x757575",
+        "light": "0xb2b2b2",
+        "off": "0xffffff"
+      }
+    }
   }
 }

@@ -1,5 +1,6 @@
 package states;
 
+import luxe.Color;
 import luxe.Log.*;
 import luxe.Sprite;
 import luxe.Vector;
@@ -31,32 +32,10 @@ class SplashState extends BaseState
 	override function onenter<T>(_:T) 
 	{
         _debug("---------- Splash.onenter ----------");
-
-	    Luxe.renderer.clear_color = GameBoyPalette.get_color(3);
                
-        super.onenter(_);		
-    }
+        super.onenter(_);	
+        _backgroundSprite.color = GameBoyPalette.get_color(3);               
 
-    override function onleave<T>( _data:T ) 
-    {
-        _debug("---------- Splash.onleave ----------");
-
-        o_anim = null;
-
-        for (i in 0 ... letters.length)
-        {
-            letters[i] = null;              
-        }
-
-        letters = null;
-        
-        super.onleave(_data);
-    }
-
-    override function post_fade_in()
-    {
-        _debug("---------- Splash.post_fade_in ----------");
-        
         // Compute character sprite positions
         var halfscreen_width = Main.w * 0.5;
         var distance = 4;
@@ -131,7 +110,30 @@ class SplashState extends BaseState
         });
 
         o_anim = letters[2].add(new LetterOAnimation({ name:'anim'}));
-        o_anim.entity.events.listen('animation.splash.end', on_anim_done);
+        o_anim.entity.events.listen('animation.splash.end', on_anim_done);           
+    }
+
+    override function onleave<T>( _data:T ) 
+    {
+        _debug("---------- Splash.onleave ----------");
+
+        o_anim = null;
+
+        for (i in 0 ... letters.length)
+        {
+            letters[i].destroy();
+            letters[i] = null;              
+        }
+
+        letters = null;
+        
+        super.onleave(_data);
+    }
+
+    override function post_fade_in()
+    {
+        _debug("---------- Splash.post_fade_in ----------");
+        
     }
 
     function on_anim_done(e)

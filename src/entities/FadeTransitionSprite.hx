@@ -1,10 +1,9 @@
 package entities;
 
-import luxe.Color;
 import luxe.Log.*;
 import luxe.Sprite;
 
-import definitions.Enums;
+import system.GameBoyPalette;
 
 class FadeTransitionSprite extends Sprite 
 {
@@ -13,12 +12,12 @@ class FadeTransitionSprite extends Sprite
         _debug("---------- FadeTransitionSprite.new ----------");
 
     	super({
-            name :'fade-transition-sprite',            
-            batcher :Main.foreground_batcher,
-            parent :Luxe.camera,
-            size :Luxe.screen.size,
-            color :new Color().rgb(GameBoyPalette2.Dark),
-            centered :false
+            name:'fade-transition-sprite',            
+            batcher:Main.foreground_batcher,
+            parent:Luxe.camera,
+            size:Luxe.screen.size,
+            color:GameBoyPalette.get_color(3),
+            centered:false
         });
     }
 }
