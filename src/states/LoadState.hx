@@ -32,8 +32,8 @@ class LoadState extends BaseState
 
         super({ 
             name:StateNames.Load, 
-            transition_in_time:0.2,
-            transition_out_time:0.2 
+            // transition_in_time:0.2,
+            // transition_out_time:0.2 
         });
     }
 

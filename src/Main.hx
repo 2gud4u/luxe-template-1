@@ -82,10 +82,8 @@ class Main extends luxe.Game
         
 	    Luxe.renderer.clear_color = new Color().rgb(BasicColors.Red);        
 
-        log('Main w: ${w}');
-        log('Main h: ${h}');
-        log('Screen width:${w} ${Luxe.screen.w}');
-        log('Screen height: ${h} ${Luxe.screen.h}');
+        log('Screen width: ${w} (original) ${Luxe.screen.w} (scaled)');
+        log('Screen height: ${h} (original) ${Luxe.screen.h} (scaled)');
 
         // Create main scene
 

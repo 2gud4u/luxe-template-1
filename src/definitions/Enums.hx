@@ -108,8 +108,8 @@ package definitions;
 // Game Boy palette, green 1
 @:enum abstract GameBoyPalette3(Int) to Int
 {
-    var Off = 0x9BBC0F;
-    var Light = 0x8BAC0F;
+    var Off = 0x9bbc0f;
+    var Light = 0x8bac0f;
 	var Medium = 0x306230;    
-	var Dark = 0x0F380F;	
+	var Dark = 0x0f380f;	
 }

@@ -9,7 +9,7 @@
     "scale": 4
   },
   "rendering": {
-    "palette": "GB3",
+    "palette": "GB2",
     "palettes": {
       "gb2": {
         "dark": "0x000000",

@@ -1,15 +1,11 @@
 package states;
 
-import luxe.Color;
 import luxe.Log.*;
 import luxe.options.StateOptions;
 import luxe.Scene;
 import luxe.Sprite;
 import luxe.States;
 import luxe.Vector;
-
-import definitions.Enums;
-import system.GameBoyPalette;
 
 typedef BaseStateOptions = 
 {
@@ -30,8 +26,8 @@ class BaseState extends State
     {
         _debug("---------- BaseState.new ----------");
 
-        def(_options.transition_in_time, 1);
-        def(_options.transition_out_time, 1);
+        def(_options.transition_in_time, 0.1);
+        def(_options.transition_out_time, 0.1);
 
         transition_in_time = _options.transition_in_time;
         transition_out_time = _options.transition_out_time;
